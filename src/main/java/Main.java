@@ -7,15 +7,20 @@ public class Main {
         int guests;
         while (true) {
             System.out.println("На сколько человек необходимо разделить счёт?");
-            guests = scanner.nextInt();
-            scanner.nextLine(); // нужно для "поглощения" символа новой строки и дальнейшего использования экземпляра scanner
-            if (guests < 1) {
-                System.out.println("Введено некорректное для подсчета значение, значение должно быть больше 1");
-            } else if (guests == 1) {
-                System.out.println("Придется платить за счет одному, поделить не получится :(\nВозвращайтесь с компанией и попробуйте снова");
+            if (scanner.hasNextInt()) {
+                guests = scanner.nextInt();
+                scanner.nextLine(); // нужно для "поглощения" символа новой строки и дальнейшего использования экземпляра scanner
+                if (guests < 1) {
+                    System.out.println("Введено некорректное для подсчета значение, значение должно быть больше 1");
+                } else if (guests == 1) {
+                    System.out.println("Придется платить за счет одному, поделить не получится :(\nВозвращайтесь с компанией и попробуйте снова");
+                } else {
+                    System.out.println("Отлично! Начнём подсчёт ^_^");
+                    break;
+                }
             } else {
-                System.out.println("Отлично! Начнём подсчёт ^_^");
-                break;
+                scanner.nextLine(); // нужно для "поглощения" символа новой строки и дальнейшего использования экземпляра scanner
+                System.out.println("Неверный формат ввода. Введите целое число.");
             }
         }
 
@@ -40,12 +45,17 @@ public class Main {
             // зарпрашиваем цену товара
             while (true) {
                 System.out.println("Введите цену товара в формате \"рубли,копейки\":");
-                price = scanner.nextDouble();
-                scanner.nextLine(); // нужно для "поглощения" символа новой строки и дальнейшего использования экземпляра scanner
-                if (price < 0.0) {
-                    System.out.println("Цена не может быть меньше 0");
+                if (scanner.hasNextDouble()) {
+                    price = scanner.nextDouble();
+                    scanner.nextLine(); // нужно для "поглощения" символа новой строки и дальнейшего использования экземпляра scanner
+                    if (price < 0.0) {
+                        System.out.println("Цена не может быть меньше 0");
+                    } else {
+                        break;
+                    }
                 } else {
-                    break;
+                    scanner.nextLine(); // нужно для "поглощения" символа новой строки и дальнейшего использования экземпляра scanner
+                    System.out.println("Неверный формат, введите цену товара в формате \"рубли,копейки\":");
                 }
             }
 
